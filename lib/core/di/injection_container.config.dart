@@ -23,6 +23,15 @@ import '../../features/add_new_beneficiary/domain/repository/add_new_beneficiary
     as _i445;
 import '../../features/add_new_beneficiary/domain/usecases/add_new_beneficiary_usecase.dart'
     as _i791;
+import '../../features/add_new_car/data/datasource/car_remote_datasource.dart'
+    as _i243;
+import '../../features/add_new_car/data/repository%20/car_repository_impl.dart'
+    as _i439;
+import '../../features/add_new_car/data/services/car_service.dart' as _i117;
+import '../../features/add_new_car/domain/repository/car_repository.dart'
+    as _i100;
+import '../../features/add_new_car/domain/usecases/add_car_usecase.dart'
+    as _i280;
 import '../../features/main_page/data/datasource/main_page_local_datasource.dart'
     as _i332;
 import '../../features/main_page/data/datasource/main_page_remote_datasource.dart'
@@ -33,8 +42,6 @@ import '../../features/main_page/domain/repository/dealer_main_repository.dart'
     as _i10;
 import '../../features/main_page/domain/usecases/get_beneficiaries_usecase.dart'
     as _i336;
-import '../../features/main_page/presentation/bloc/main_page_bloc.dart'
-    as _i950;
 import '../../features/sign_in/data/datasource/sign_in_local_datasource.dart'
     as _i419;
 import '../../features/sign_in/data/datasource/sign_in_remote_datasource.dart'
@@ -44,7 +51,6 @@ import '../../features/sign_in/data/repository/sign_in_repository_impl.dart'
 import '../../features/sign_in/domain/repository/sign_in_repository.dart'
     as _i841;
 import '../../features/sign_in/domain/usecases/sign_in_usecase.dart' as _i518;
-import '../../features/sign_in/presentation/bloc/sign_in_bloc.dart' as _i640;
 import '../../features/sign_up/data/datasource/sign_up_local_datasource.dart'
     as _i874;
 import '../../features/sign_up/data/datasource/sign_up_remote_datasource.dart'
@@ -56,7 +62,6 @@ import '../../features/sign_up/domain/repository/sign_up_repository.dart'
 import '../../features/sign_up/domain/usecases/continue_as_guest_usecase.dart'
     as _i692;
 import '../../features/sign_up/domain/usecases/sign_up_usecase.dart' as _i18;
-import '../../features/sign_up/presentation/bloc/sign_up_bloc.dart' as _i148;
 import '../../features/splash/data/datasource/splash_local_datasource.dart'
     as _i55;
 import '../../features/splash/data/repository/splash_repository_impl.dart'
@@ -134,6 +139,11 @@ Future<_i174.GetIt> $initGetIt(
         networkInfo: gh<_i932.NetworkInfo>(),
         baseRemoteDataSource: gh<_i262.BaseRemoteDataSource>(),
       ));
+  gh.lazySingleton<_i243.CarRemoteDataSource>(
+      () => _i243.CarRemoteDataSourceImpl(
+            carService: gh<_i117.CarService>(),
+            dio: gh<_i361.Dio>(),
+          ));
   gh.lazySingleton<_i578.SignUpRepository>(() => _i564.SignUpRepositoryImpl(
         signUpRemoteDataSource: gh<_i176.SignUpRemoteDataSource>(),
         signUpLocalDataSource: gh<_i874.SignUpLocalDataSource>(),
@@ -145,6 +155,11 @@ Future<_i174.GetIt> $initGetIt(
       () => _i692.ContinueAsGuestUseCase(gh<_i578.SignUpRepository>()));
   gh.lazySingleton<_i18.SignUpUseCase>(
       () => _i18.SignUpUseCase(gh<_i578.SignUpRepository>()));
+  gh.lazySingleton<_i100.CarRepository>(() => _i439.CarRepositoryImpl(
+        baseLocalDataSource: gh<_i660.BaseLocalDataSource>(),
+        carRemoteDataSource: gh<_i243.CarRemoteDataSource>(),
+        networkInfo: gh<_i932.NetworkInfo>(),
+      ));
   gh.lazySingleton<_i841.SignInRepository>(
       () => _i897.DealerSignInRepositoryImpl(
             signInRemoteDataSource: gh<_i928.SignInRemoteDataSource>(),
@@ -171,23 +186,10 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.lazySingleton<_i336.GetBeneficiariesUseCase>(
       () => _i336.GetBeneficiariesUseCase(gh<_i10.MainPageRepository>()));
+  gh.lazySingleton<_i280.AddCarUseCase>(
+      () => _i280.AddCarUseCase(gh<_i100.CarRepository>()));
   gh.lazySingleton<_i791.AddNewBeneficiaryUseCase>(() =>
       _i791.AddNewBeneficiaryUseCase(gh<_i445.AddNewBeneficiaryRepository>()));
-  gh.factory<_i950.MainPageBloc>(() => _i950.MainPageBloc(
-        gh<_i336.GetBeneficiariesUseCase>(),
-        gh<_i1067.GetUserInfoUseCase>(),
-      ));
-  gh.factory<_i640.SignInBloc>(() => _i640.SignInBloc(
-        gh<_i518.SignInUseCase>(),
-        gh<_i542.SaveUserInfoUseCase>(),
-        gh<_i941.InputValidators>(),
-      ));
-  gh.factory<_i148.SignUpBloc>(() => _i148.SignUpBloc(
-        signUpUseCase: gh<_i18.SignUpUseCase>(),
-        saveUserInfoUseCase: gh<_i542.SaveUserInfoUseCase>(),
-        continueAsGuestUseCase: gh<_i692.ContinueAsGuestUseCase>(),
-        inputValidators: gh<_i941.InputValidators>(),
-      ));
   gh.lazySingleton<_i848.CheckUserIsLoggedIn>(
       () => _i848.CheckUserIsLoggedIn(gh<_i682.SplashRepository>()));
   gh.factory<_i442.SplashBloc>(() =>

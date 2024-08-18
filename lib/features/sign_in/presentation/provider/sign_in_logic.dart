@@ -11,6 +11,7 @@ part 'sign_in_logic.g.dart';
 class SignInLogic extends _$SignInLogic {
   SignInUseCase signInUseCase = getIt<SignInUseCase>();
   SaveUserInfoUseCase saveUserInfoUseCase = getIt<SaveUserInfoUseCase>();
+  InputValidators inputValidators = getIt<InputValidators>();
 
   @override
   SignInState build() {
@@ -34,7 +35,6 @@ class SignInLogic extends _$SignInLogic {
   }
 
   Future<void> submit() async {
-    final inputValidators = getIt<InputValidators>();
     if (!inputValidators.validateEmail(state.email)) {
       state = state.copyWith(errorUserNameValidation: true);
     } else if (!inputValidators.validatePasswordInput(state.password)) {

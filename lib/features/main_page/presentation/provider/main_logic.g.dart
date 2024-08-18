@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_in_logic.dart';
+part of 'main_logic.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInLogicHash() => r'50828a2f15c0a0f834b35244ce1d89813099b247';
+String _$mainLogicHash() => r'1339d35c6f4b0d9114ad5768869027bb5e626d94';
 
-/// See also [SignInLogic].
-@ProviderFor(SignInLogic)
-final signInLogicProvider =
-    AutoDisposeNotifierProvider<SignInLogic, SignInState>.internal(
-  SignInLogic.new,
-  name: r'signInLogicProvider',
+/// See also [MainLogic].
+@ProviderFor(MainLogic)
+final mainLogicProvider =
+    AutoDisposeNotifierProvider<MainLogic, MainState>.internal(
+  MainLogic.new,
+  name: r'mainLogicProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$signInLogicHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$mainLogicHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SignInLogic = AutoDisposeNotifier<SignInState>;
+typedef _$MainLogic = AutoDisposeNotifier<MainState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

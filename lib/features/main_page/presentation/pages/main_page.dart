@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> with FlushBarMixin {
               backgroundColor: TEXT_FIELD_COLOR,
               centerTitle: false,
               title: Text(
-                "Beneficiaries",
+                "Cars",
                 style: TextStyle(
                     fontSize: 14.sp,
                     color: MAIN1,
