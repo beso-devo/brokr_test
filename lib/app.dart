@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'core/di/injection_container.dart';
@@ -32,27 +33,29 @@ class _AppState extends State<App> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    return Sizer(
-      builder: (BuildContext context, Orientation orientation,
-          DeviceType deviceType) {
-        return MaterialApp(
-          theme: ThemeData(fontFamily: "Josefin"),
-          debugShowCheckedModeBanner: false,
-          builder: (context, child) {
-            return AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.dark.copyWith(
-                statusBarColor: Colors.transparent,
-              ),
-              child: ScrollConfiguration(
-                behavior: CustomScrollBehavior(),
-                child: child!,
-              ),
-            );
-          },
-          initialRoute: GeneralScreens.SPLASH_PAGE,
-          onGenerateRoute: GenerateScreen.onGenerate,
-        );
-      },
+    return ProviderScope(
+      child: Sizer(
+        builder: (BuildContext context, Orientation orientation,
+            DeviceType deviceType) {
+          return MaterialApp(
+            theme: ThemeData(fontFamily: "Josefin"),
+            debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              return AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.dark.copyWith(
+                  statusBarColor: Colors.transparent,
+                ),
+                child: ScrollConfiguration(
+                  behavior: CustomScrollBehavior(),
+                  child: child!,
+                ),
+              );
+            },
+            initialRoute: GeneralScreens.SPLASH_PAGE,
+            onGenerateRoute: GenerateScreen.onGenerate,
+          );
+        },
+      ),
     );
   }
 }

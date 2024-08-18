@@ -1,31 +1,30 @@
+import 'package:brokr/features/sign_in/presentation/provider/sign_in_logic.dart';
+import 'package:brokr/features/sign_in/presentation/provider/sign_in_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/di/injection_container.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/generate_screen.dart';
 import '../../../../core/util/input_text_field.dart';
 import '../../../../core/util/mixin/flush_bar_mixin.dart';
 import '../../../../core/util/widgets/submit_button_widget.dart';
-import '../bloc/sign_in_bloc.dart';
-import '../bloc/sign_in_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  const SignInPage({super.key});
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> with FlushBarMixin {
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
-  final _bloc = getIt<SignInBloc>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-      bloc: _bloc,
-      listener: (BuildContext context, SignInState state) {
+    return Consumer(
+      builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        SignInState state = ref.watch(signInLogicProvider);
+
         if (state.userSignedIn) {
           Navigator.pushNamedAndRemoveUntil(
               context, GeneralScreens.MAIN_PAGE, (route) => false);
@@ -35,98 +34,93 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
               title: "Error!",
               context: context,
               message: "The account is not exists!",
-              duration: Duration(milliseconds: 1750),
+              duration: const Duration(milliseconds: 1750),
               onChangeStatus: (status) {},
               onHidden: () {
-                _bloc.onClear();
+                ref.read(signInLogicProvider.notifier).clearData();
               });
         }
-      },
-      child: BlocBuilder(
-        bloc: _bloc,
-        builder: (context, SignInState state) {
-          return Scaffold(
-              backgroundColor: Colors.white,
-              appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(0.0),
-                  child: AppBar(
-                    backgroundColor: Color(0xffF8F7F7),
-                    elevation: 0.0,
-                  )),
-              body: OrientationBuilder(
-                builder: (BuildContext context, Orientation orientation) {
-                  bool isPortrait =
-                      orientation.toString() == 'Orientation.portrait';
-                  if (MediaQuery.of(context).orientation ==
-                      Orientation.landscape) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width / 2) - 10,
-                            height: MediaQuery.of(context).size.height,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: headerLogin(),
-                            ),
-                          ),
-                          Container(
-                            width: (MediaQuery.of(context).size.width / 2) - 10,
-                            height: MediaQuery.of(context).size.height,
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 12.0,
-                                  ),
-                                  formLogin(state),
-                                  SizedBox(
-                                    height: 8.0,
-                                  ),
-                                  // createAnAccount()
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(
-                              parent: AlwaysScrollableScrollPhysics()),
-                          child: Column(
-                            children: [
-                              headerLogin(),
-                              SizedBox(
-                                height: 50.0,
-                              ),
-                              formLogin(state),
-                            ],
+        return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(0.0),
+                child: AppBar(
+                  backgroundColor: const Color(0xffF8F7F7),
+                  elevation: 0.0,
+                )),
+            body: OrientationBuilder(
+              builder: (BuildContext context, Orientation orientation) {
+                bool isPortrait =
+                    orientation.toString() == 'Orientation.portrait';
+                if (MediaQuery.of(context).orientation ==
+                    Orientation.landscape) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: (MediaQuery.of(context).size.width / 2) - 10,
+                          height: MediaQuery.of(context).size.height,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: headerLogin(context),
                           ),
                         ),
+                        SizedBox(
+                          width: (MediaQuery.of(context).size.width / 2) - 10,
+                          height: MediaQuery.of(context).size.height,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 12.0,
+                                ),
+                                formLogin(state, ref),
+                                const SizedBox(
+                                  height: 8.0,
+                                ),
+                                // createAnAccount(context)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        child: Column(
+                          children: [
+                            headerLogin(context),
+                            const SizedBox(
+                              height: 50.0,
+                            ),
+                            formLogin(state, ref),
+                          ],
+                        ),
                       ),
-                    );
-                  }
-                },
-              ));
-        },
-      ),
+                    ),
+                  );
+                }
+              },
+            ));
+      },
     );
   }
 
-  Widget headerLogin() {
+  Widget headerLogin(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 12.0,
         ),
         Row(
@@ -134,14 +128,14 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
           children: [
             Row(
               children: [
-                Text(
+                const Text(
                   "Welcome Back!",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10.0,
                 ),
                 Image.asset(
@@ -155,10 +149,10 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
               child: Container(
                 height: 40,
                 width: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: TEXT_FIELD_COLOR),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 5.0),
                   child: Center(
                     child: Icon(
                       Icons.arrow_back_ios,
@@ -171,12 +165,12 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 6.0,
         ),
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width,
-          child: Text(
+          child: const Text(
             "I am happy to see you again. You can check your subscribe requests to your company after sign in.",
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
@@ -187,7 +181,7 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
     );
   }
 
-  Widget formLogin(SignInState state) {
+  Widget formLogin(SignInState state, WidgetRef ref) {
     return Column(
       children: [
         InputTextField(
@@ -195,15 +189,16 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
             hintText: "Username",
             inputType: TextInputType.name,
             onSubmit: (val) {},
-            onChanged: _bloc.onChangedUserName,
+            onChanged: (val) =>
+                ref.read(signInLogicProvider.notifier).changeEmail(val),
             controller: emailController,
             showError: state.errorUserNameValidation,
             errorText: "Invalid input!",
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.email,
               size: 20.0,
             )),
-        SizedBox(
+        const SizedBox(
           height: 12.0,
         ),
         InputTextField(
@@ -211,13 +206,15 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
             hintText: "Password",
             inputType: TextInputType.name,
             onSubmit: (val) {},
-            onChanged: _bloc.onChangedPassword,
+            onChanged: (val) =>
+                ref.read(signInLogicProvider.notifier).changePassword(val),
             controller: passwordController,
             showError: state.errorPasswordValidation,
             errorText: "Invalid input!",
             obscureText: state.isSecureText,
             suffixIcon: GestureDetector(
-              onTap: _bloc.onObscureChanged,
+              onTap: () =>
+                  ref.read(signInLogicProvider.notifier).changeSecureText(),
               child: Icon(
                 state.isSecureText
                     ? Icons.remove_red_eye
@@ -225,11 +222,11 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
                 color: DARK_OFF_FONT,
               ),
             ),
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.lock,
               size: 20.0,
             )),
-        SizedBox(
+        const SizedBox(
           height: 12.0,
         ),
         Align(
@@ -240,39 +237,12 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
             child: SubmitButtonWidget(
               color: MAIN1,
               title: "Submit",
-              onTap: _bloc.onSignInSubmit,
+              onTap: () => ref.read(signInLogicProvider.notifier).submit(),
               isLoading: state.isSigningIn,
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget createAnAccount() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0),
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "You don’t have an account?" + " ",
-              style: TextStyle(color: DARK_OFF_FONT, fontSize: 16.0),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                "Sign In",
-                style: TextStyle(color: MAIN1, fontSize: 16.0),
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
