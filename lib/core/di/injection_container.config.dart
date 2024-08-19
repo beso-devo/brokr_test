@@ -61,7 +61,6 @@ import '../../features/splash/domain/repository/splash_repository.dart'
     as _i682;
 import '../../features/splash/domain/usecases/check_user_logged_id.dart'
     as _i848;
-import '../../features/splash/presentation/bloc/splash_bloc.dart' as _i442;
 import '../data/models/base_local_data_source.dart' as _i660;
 import '../data/models/base_remote_datasource.dart' as _i262;
 import '../data/repository/base_repository.dart' as _i94;
@@ -169,8 +168,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i280.AddCarUseCase(gh<_i100.CarRepository>()));
   gh.lazySingleton<_i848.CheckUserIsLoggedIn>(
       () => _i848.CheckUserIsLoggedIn(gh<_i682.SplashRepository>()));
-  gh.factory<_i442.SplashBloc>(() =>
-      _i442.SplashBloc(checkUserIsLoggedIn: gh<_i848.CheckUserIsLoggedIn>()));
   return getIt;
 }
 

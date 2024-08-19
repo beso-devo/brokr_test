@@ -1,6 +1,5 @@
 import 'package:brokr/features/sign_up/presentation/provider/sign_up_logic.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/util/colors.dart';

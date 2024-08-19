@@ -1,40 +1,40 @@
 import 'dart:async';
+import 'package:brokr/features/splash/presentation/provider/splash_logic.dart';
+import 'package:brokr/features/splash/presentation/provider/splash_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/di/injection_container.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/generate_screen.dart';
-import '../bloc/splash_bloc.dart';
-import '../bloc/splash_state.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+class SplashPage extends ConsumerStatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
-  final _bloc = getIt<SplashBloc>();
-
+class _SplashPageState extends ConsumerState<SplashPage> {
   @override
   void initState() {
-    Timer timer = new Timer(Duration(milliseconds: 1500), () async {
-      _bloc.onInitializeApp();
+    Future.delayed((const Duration(milliseconds: 1000))).then((c) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, GeneralScreens.SIGN_UP, (route) => false);
+      /// Here we can read the user loggedin status field in shared or whatever..
+      /// ref.read(splashLogicProvider.notifier).mapToCheckUserStatus();
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-        bloc: _bloc,
-        listener: (BuildContext context, SplashState state) {
-          goToTruthPage(state.userStatus);
-        },
-        child: Scaffold(
+    return Consumer(
+      builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        SplashState state = ref.watch(splashLogicProvider);
+        goToTruthPage(state.userStatus);
+
+        return Scaffold(
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(0.0),
+              preferredSize: const Size.fromHeight(0.0),
               child: AppBar(
                 backgroundColor: MAIN1,
                 elevation: 0.0,
@@ -51,10 +51,10 @@ class _SplashPageState extends State<SplashPage> {
                     'assets/images/waving-hand.png',
                     height: 150,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25.0,
                   ),
-                  Text(
+                  const Text(
                     "Brokr App",
                     style: TextStyle(
                         color: Colors.white,
@@ -65,7 +65,9 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-        ));
+        );
+      },
+    );
   }
 
   void goToTruthPage(int status) {
