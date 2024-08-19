@@ -30,10 +30,11 @@ import '../../features/main_page/data/datasource/main_page_remote_datasource.dar
     as _i27;
 import '../../features/main_page/data/repository/dealer_main_repository_impl.dart'
     as _i987;
+import '../../features/main_page/data/services/main_api_service.dart' as _i915;
 import '../../features/main_page/domain/repository/dealer_main_repository.dart'
     as _i10;
-import '../../features/main_page/domain/usecases/get_beneficiaries_usecase.dart'
-    as _i336;
+import '../../features/main_page/domain/usecases/get_boats_usecase.dart'
+    as _i899;
 import '../../features/sign_in/data/datasource/sign_in_local_datasource.dart'
     as _i419;
 import '../../features/sign_in/data/datasource/sign_in_remote_datasource.dart'
@@ -117,6 +118,11 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i874.SignUpLocalDataSource>(() =>
       _i874.SignUpLocalDataSourceImpl(
           sharedPreferences: gh<_i460.SharedPreferences>()));
+  gh.lazySingleton<_i27.MainPageRemoteDataSource>(
+      () => _i27.MainPageRemoteDataSourceImpl(
+            mainApiService: gh<_i915.MainApiService>(),
+            dio: gh<_i361.Dio>(),
+          ));
   gh.lazySingleton<_i94.BaseRepository>(() => _i94.BaseRepositoryImpl(
         baseLocalDataSource: gh<_i660.BaseLocalDataSource>(),
         networkInfo: gh<_i932.NetworkInfo>(),
@@ -132,8 +138,6 @@ Future<_i174.GetIt> $initGetIt(
         signUpLocalDataSource: gh<_i874.SignUpLocalDataSource>(),
         networkInfo: gh<_i932.NetworkInfo>(),
       ));
-  gh.lazySingleton<_i27.MainPageRemoteDataSource>(
-      () => _i27.MainPageRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.lazySingleton<_i692.ContinueAsGuestUseCase>(
       () => _i692.ContinueAsGuestUseCase(gh<_i578.SignUpRepository>()));
   gh.lazySingleton<_i18.SignUpUseCase>(
@@ -157,18 +161,18 @@ Future<_i174.GetIt> $initGetIt(
       () => _i1067.GetUserInfoUseCase(gh<_i841.SignInRepository>()));
   gh.lazySingleton<_i518.SignInUseCase>(
       () => _i518.SignInUseCase(gh<_i841.SignInRepository>()));
+  gh.lazySingleton<_i10.MainPageRepository>(() => _i987.MainPageRepositoryImpl(
+        mainPageRemoteDataSource: gh<_i27.MainPageRemoteDataSource>(),
+        mainPageLocalDataSource: gh<_i332.MainPageLocalDataSource>(),
+        networkInfo: gh<_i932.NetworkInfo>(),
+      ));
   gh.lazySingleton<_i682.SplashRepository>(() => _i1019.SplashRepositoryImpl(
         splashLocalDataSource: gh<_i55.SplashLocalDataSource>(),
         networkInfo: gh<_i932.NetworkInfo>(),
         baseRemoteDataSource: gh<_i262.BaseRemoteDataSource>(),
       ));
-  gh.lazySingleton<_i10.MainPageRepository>(() => _i987.MainPageRepositoryImpl(
-        dealerMainRemoteDataSource: gh<_i27.MainPageRemoteDataSource>(),
-        dealerMainLocalDataSource: gh<_i332.MainPageLocalDataSource>(),
-        networkInfo: gh<_i932.NetworkInfo>(),
-      ));
-  gh.lazySingleton<_i336.GetBeneficiariesUseCase>(
-      () => _i336.GetBeneficiariesUseCase(gh<_i10.MainPageRepository>()));
+  gh.lazySingleton<_i899.GetBoatsUseCase>(
+      () => _i899.GetBoatsUseCase(gh<_i10.MainPageRepository>()));
   gh.lazySingleton<_i280.AddCarUseCase>(
       () => _i280.AddCarUseCase(gh<_i100.CarRepository>()));
   gh.lazySingleton<_i848.CheckUserIsLoggedIn>(

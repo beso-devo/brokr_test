@@ -1,16 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class Endpoints {
-  static const BASE_URL = 'http://domain.com';
-
-  static const SIGN_IN = '/api/sign-in';
-  static const REGISTER = '/api/register';
-  static const GET_BENEFICIARIES = '/api/beneficiaries';
-  static const ADD_BENEFICIARY = '/api/add-beneficiary';
-  static const TOP_UP = '/api/top-up';
-}
-
 enum ErrorCode {
   CacheError,
   UNAUTHENTICATED,

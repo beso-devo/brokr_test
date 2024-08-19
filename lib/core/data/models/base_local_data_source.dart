@@ -47,7 +47,7 @@ class BaseLocalDataSourceImpl implements BaseLocalDataSource {
     if (res != null) {
       return res;
     } else {
-      return Future.value(Endpoints.BASE_URL);
+      return Future.value("https://www.example.com");
     }
   }
 

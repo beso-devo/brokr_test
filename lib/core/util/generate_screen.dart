@@ -14,26 +14,16 @@ class GenerateScreen {
     switch (name) {
       case GeneralScreens.SPLASH_PAGE:
         return MaterialPageRoute(builder: (context) => SplashPage());
-
       case GeneralScreens.SIGN_IN:
         return MaterialPageRoute(builder: (context) => SignInPage());
-
       case GeneralScreens.SIGN_UP:
         return MaterialPageRoute(builder: (context) => SignUpPage());
-
       case GeneralScreens.CONTINUE_AS_GUEST:
         return MaterialPageRoute(builder: (context) => ContinueAsGuestPage());
-
       case GeneralScreens.MAIN_PAGE:
         return MaterialPageRoute(builder: (context) => MainPage());
-
       case GeneralScreens.ADD_CAR:
         return MaterialPageRoute(builder: (context) => AddCarPage());
-
-      // case GeneralScreens.TOP_UP_BENEFICIARY:
-      //   return MaterialPageRoute(
-      //       builder: (context) =>
-      //           BeneficiaryTopUpPage((args as Map)["beneficiary"]));
 
       default:
         return _errorRoute();
