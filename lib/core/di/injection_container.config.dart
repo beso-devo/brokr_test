@@ -15,14 +15,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i973;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
-import '../../features/add_new_beneficiary/data/datasource/add_new_beneficiary_remote_datasource.dart'
-    as _i249;
-import '../../features/add_new_beneficiary/data/repository/add_new_beneficiary_repository_impl.dart'
-    as _i818;
-import '../../features/add_new_beneficiary/domain/repository/add_new_beneficiary_repository.dart'
-    as _i445;
-import '../../features/add_new_beneficiary/domain/usecases/add_new_beneficiary_usecase.dart'
-    as _i791;
 import '../../features/add_new_car/data/datasource/car_remote_datasource.dart'
     as _i243;
 import '../../features/add_new_car/data/repository%20/car_repository_impl.dart'
@@ -117,8 +109,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i419.SignInLocalDataSource>(() =>
       _i419.SignInLocalDataSourceImpl(
           sharedPreferences: gh<_i460.SharedPreferences>()));
-  gh.lazySingleton<_i249.AddNewBeneficiaryRemoteDataSource>(
-      () => _i249.AddNewBeneficiaryRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.lazySingleton<_i55.SplashLocalDataSource>(() =>
       _i55.SplashLocalDataSourceImpl(
           sharedPreferences: gh<_i460.SharedPreferences>()));
@@ -127,13 +117,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i874.SignUpLocalDataSource>(() =>
       _i874.SignUpLocalDataSourceImpl(
           sharedPreferences: gh<_i460.SharedPreferences>()));
-  gh.lazySingleton<_i445.AddNewBeneficiaryRepository>(
-      () => _i818.AddNewBeneficiaryRepositoryImpl(
-            addNewBeneficiaryRemoteDataSource:
-                gh<_i249.AddNewBeneficiaryRemoteDataSource>(),
-            networkInfo: gh<_i932.NetworkInfo>(),
-            baseLocalDataSource: gh<_i660.BaseLocalDataSource>(),
-          ));
   gh.lazySingleton<_i94.BaseRepository>(() => _i94.BaseRepositoryImpl(
         baseLocalDataSource: gh<_i660.BaseLocalDataSource>(),
         networkInfo: gh<_i932.NetworkInfo>(),
@@ -188,8 +171,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i336.GetBeneficiariesUseCase(gh<_i10.MainPageRepository>()));
   gh.lazySingleton<_i280.AddCarUseCase>(
       () => _i280.AddCarUseCase(gh<_i100.CarRepository>()));
-  gh.lazySingleton<_i791.AddNewBeneficiaryUseCase>(() =>
-      _i791.AddNewBeneficiaryUseCase(gh<_i445.AddNewBeneficiaryRepository>()));
   gh.lazySingleton<_i848.CheckUserIsLoggedIn>(
       () => _i848.CheckUserIsLoggedIn(gh<_i682.SplashRepository>()));
   gh.factory<_i442.SplashBloc>(() =>

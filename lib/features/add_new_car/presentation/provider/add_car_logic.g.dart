@@ -6,7 +6,7 @@ part of 'add_car_logic.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addCarLogicHash() => r'456a248a55e27784f08b6180a8c8cd3b7951e57f';
+String _$addCarLogicHash() => r'a7f8e5d22e1e8f16b849331ec8208e1b16fdf0e1';
 
 /// See also [AddCarLogic].
 @ProviderFor(AddCarLogic)

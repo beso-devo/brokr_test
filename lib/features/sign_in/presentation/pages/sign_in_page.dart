@@ -237,7 +237,11 @@ class _SignInPageState extends State<SignInPage> with FlushBarMixin {
             child: SubmitButtonWidget(
               color: MAIN1,
               title: "Submit",
-              onTap: () => ref.read(signInLogicProvider.notifier).submit(),
+              onTap: () {
+                ref.read(signInLogicProvider.notifier).submit();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, GeneralScreens.MAIN_PAGE, (route) => false);
+              },
               isLoading: state.isSigningIn,
             ),
           ),

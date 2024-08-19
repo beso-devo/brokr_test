@@ -1,4 +1,4 @@
-import 'package:brokr/features/add_new_beneficiary/presentation/page/add_new_beneficiary_riverpod_page.dart';
+import 'package:brokr/features/add_new_car/presentation/pages/add_car_page.dart';
 import 'package:flutter/material.dart';
 import '../../features/main_page/presentation/pages/main_page.dart';
 import '../../features/sign_in/presentation/pages/sign_in_page.dart';
@@ -27,8 +27,8 @@ class GenerateScreen {
       case GeneralScreens.MAIN_PAGE:
         return MaterialPageRoute(builder: (context) => MainPage());
 
-      case GeneralScreens.ADD_BENEFICIARY:
-        return MaterialPageRoute(builder: (context) => AddNewBeneficiaryRiverPodPage());
+      case GeneralScreens.ADD_CAR:
+        return MaterialPageRoute(builder: (context) => AddCarPage());
 
       // case GeneralScreens.TOP_UP_BENEFICIARY:
       //   return MaterialPageRoute(
@@ -63,5 +63,6 @@ class GeneralScreens {
   static const String CONTINUE_AS_GUEST = "/sign_up_guest";
   static const String MAIN_PAGE = "/admin-main-pages";
   static const String ADD_BENEFICIARY = "/add-beneficiary";
+  static const String ADD_CAR = "/add-car";
   static const String TOP_UP_BENEFICIARY = "/top-up-beneficiary";
 }

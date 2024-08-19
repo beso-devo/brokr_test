@@ -11,9 +11,9 @@ abstract class AddCarState with _$AddCarState {
     @Default("") String phoneNumber,
     @Default(false) bool errorNicknameValidation,
     @Default(false) bool errorPhoneNumberValidation,
-    @Default(false) bool beneficiaryAdded,
-    @Default(false) bool isAddingBeneficiary,
-    @Default(false) bool errorAddingBeneficiary,
+    @Default(false) bool carAdded,
+    @Default(false) bool isAddingCar,
+    @Default(false) bool errorAddingCar,
   }) = _AddCarState;
 
   factory AddCarState.fromJson(Map<String, dynamic> json) =>

@@ -14,9 +14,9 @@ _$AddCarStateImpl _$$AddCarStateImplFromJson(Map<String, dynamic> json) =>
           json['errorNicknameValidation'] as bool? ?? false,
       errorPhoneNumberValidation:
           json['errorPhoneNumberValidation'] as bool? ?? false,
-      beneficiaryAdded: json['beneficiaryAdded'] as bool? ?? false,
-      isAddingBeneficiary: json['isAddingBeneficiary'] as bool? ?? false,
-      errorAddingBeneficiary: json['errorAddingBeneficiary'] as bool? ?? false,
+      carAdded: json['carAdded'] as bool? ?? false,
+      isAddingCar: json['isAddingCar'] as bool? ?? false,
+      errorAddingCar: json['errorAddingCar'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AddCarStateImplToJson(_$AddCarStateImpl instance) =>
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$AddCarStateImplToJson(_$AddCarStateImpl instance) =>
       'phoneNumber': instance.phoneNumber,
       'errorNicknameValidation': instance.errorNicknameValidation,
       'errorPhoneNumberValidation': instance.errorPhoneNumberValidation,
-      'beneficiaryAdded': instance.beneficiaryAdded,
-      'isAddingBeneficiary': instance.isAddingBeneficiary,
-      'errorAddingBeneficiary': instance.errorAddingBeneficiary,
+      'carAdded': instance.carAdded,
+      'isAddingCar': instance.isAddingCar,
+      'errorAddingCar': instance.errorAddingCar,
     };

@@ -217,7 +217,11 @@ class _SignUpPageState extends State<SignUpPage> {
             child: SubmitButtonWidget(
               color: MAIN1,
               title: "Sign Up",
-              onTap: () => ref.read(signUpLogicProvider.notifier).submit(),
+              onTap: () {
+                ref.read(signUpLogicProvider.notifier).submit();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, GeneralScreens.MAIN_PAGE, (route) => false);
+              },
               isLoading: state.isSigningUp,
             ),
           ),

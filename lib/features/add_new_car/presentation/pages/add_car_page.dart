@@ -1,3 +1,4 @@
+import 'package:brokr/features/add_new_car/domain/entity/car_entity.dart';
 import 'package:brokr/features/add_new_car/presentation/provider/add_car_logic.dart';
 import 'package:brokr/features/add_new_car/presentation/provider/add_car_state.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,12 @@ class AddCarPage extends ConsumerWidget with FlushBarMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AddCarState state = ref.watch(addCarLogicProvider);
-    if (state.beneficiaryAdded) {
-      Navigator.pop(context, {"car": null});
+    if (state.carAdded) {
+      /// The CarEntity has to be coming from the backend (store it in the state and
+      /// return it back here and pop it to the previous page for adding it without calling
+      /// the api again...).
+      Navigator.pop(
+          context, {"newCar": CarEntity(id: -1, name: 'name', brand: 'brand')});
     }
     return Scaffold(
         key: scaffoldState,
@@ -101,11 +106,11 @@ class AddCarPage extends ConsumerWidget with FlushBarMixin {
       children: [
         InputTextField(
             title: 'ss',
-            hintText: "Nickname",
+            hintText: "Title",
             inputType: TextInputType.number,
             onSubmit: (val) {},
             onChanged: (String val) =>
-                ref.read(addCarLogicProvider.notifier).changeName(val),
+                ref.read(addCarLogicProvider.notifier).changeTitle(val),
             controller: nicknameController,
             showError: refState.errorNicknameValidation,
             errorText: "Invalid input!",
@@ -162,7 +167,7 @@ class AddCarPage extends ConsumerWidget with FlushBarMixin {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Add Beneficiary",
+              "Add New Car",
               style: TextStyle(
                   color: MAIN1, fontSize: 14.sp, fontWeight: FontWeight.bold),
             ),

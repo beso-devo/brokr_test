@@ -24,9 +24,9 @@ mixin _$AddCarState {
   String get phoneNumber => throw _privateConstructorUsedError;
   bool get errorNicknameValidation => throw _privateConstructorUsedError;
   bool get errorPhoneNumberValidation => throw _privateConstructorUsedError;
-  bool get beneficiaryAdded => throw _privateConstructorUsedError;
-  bool get isAddingBeneficiary => throw _privateConstructorUsedError;
-  bool get errorAddingBeneficiary => throw _privateConstructorUsedError;
+  bool get carAdded => throw _privateConstructorUsedError;
+  bool get isAddingCar => throw _privateConstructorUsedError;
+  bool get errorAddingCar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,9 +45,9 @@ abstract class $AddCarStateCopyWith<$Res> {
       String phoneNumber,
       bool errorNicknameValidation,
       bool errorPhoneNumberValidation,
-      bool beneficiaryAdded,
-      bool isAddingBeneficiary,
-      bool errorAddingBeneficiary});
+      bool carAdded,
+      bool isAddingCar,
+      bool errorAddingCar});
 }
 
 /// @nodoc
@@ -67,9 +67,9 @@ class _$AddCarStateCopyWithImpl<$Res, $Val extends AddCarState>
     Object? phoneNumber = null,
     Object? errorNicknameValidation = null,
     Object? errorPhoneNumberValidation = null,
-    Object? beneficiaryAdded = null,
-    Object? isAddingBeneficiary = null,
-    Object? errorAddingBeneficiary = null,
+    Object? carAdded = null,
+    Object? isAddingCar = null,
+    Object? errorAddingCar = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -88,17 +88,17 @@ class _$AddCarStateCopyWithImpl<$Res, $Val extends AddCarState>
           ? _value.errorPhoneNumberValidation
           : errorPhoneNumberValidation // ignore: cast_nullable_to_non_nullable
               as bool,
-      beneficiaryAdded: null == beneficiaryAdded
-          ? _value.beneficiaryAdded
-          : beneficiaryAdded // ignore: cast_nullable_to_non_nullable
+      carAdded: null == carAdded
+          ? _value.carAdded
+          : carAdded // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAddingBeneficiary: null == isAddingBeneficiary
-          ? _value.isAddingBeneficiary
-          : isAddingBeneficiary // ignore: cast_nullable_to_non_nullable
+      isAddingCar: null == isAddingCar
+          ? _value.isAddingCar
+          : isAddingCar // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorAddingBeneficiary: null == errorAddingBeneficiary
-          ? _value.errorAddingBeneficiary
-          : errorAddingBeneficiary // ignore: cast_nullable_to_non_nullable
+      errorAddingCar: null == errorAddingCar
+          ? _value.errorAddingCar
+          : errorAddingCar // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -117,9 +117,9 @@ abstract class _$$AddCarStateImplCopyWith<$Res>
       String phoneNumber,
       bool errorNicknameValidation,
       bool errorPhoneNumberValidation,
-      bool beneficiaryAdded,
-      bool isAddingBeneficiary,
-      bool errorAddingBeneficiary});
+      bool carAdded,
+      bool isAddingCar,
+      bool errorAddingCar});
 }
 
 /// @nodoc
@@ -137,9 +137,9 @@ class __$$AddCarStateImplCopyWithImpl<$Res>
     Object? phoneNumber = null,
     Object? errorNicknameValidation = null,
     Object? errorPhoneNumberValidation = null,
-    Object? beneficiaryAdded = null,
-    Object? isAddingBeneficiary = null,
-    Object? errorAddingBeneficiary = null,
+    Object? carAdded = null,
+    Object? isAddingCar = null,
+    Object? errorAddingCar = null,
   }) {
     return _then(_$AddCarStateImpl(
       name: null == name
@@ -158,17 +158,17 @@ class __$$AddCarStateImplCopyWithImpl<$Res>
           ? _value.errorPhoneNumberValidation
           : errorPhoneNumberValidation // ignore: cast_nullable_to_non_nullable
               as bool,
-      beneficiaryAdded: null == beneficiaryAdded
-          ? _value.beneficiaryAdded
-          : beneficiaryAdded // ignore: cast_nullable_to_non_nullable
+      carAdded: null == carAdded
+          ? _value.carAdded
+          : carAdded // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAddingBeneficiary: null == isAddingBeneficiary
-          ? _value.isAddingBeneficiary
-          : isAddingBeneficiary // ignore: cast_nullable_to_non_nullable
+      isAddingCar: null == isAddingCar
+          ? _value.isAddingCar
+          : isAddingCar // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorAddingBeneficiary: null == errorAddingBeneficiary
-          ? _value.errorAddingBeneficiary
-          : errorAddingBeneficiary // ignore: cast_nullable_to_non_nullable
+      errorAddingCar: null == errorAddingCar
+          ? _value.errorAddingCar
+          : errorAddingCar // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -182,9 +182,9 @@ class _$AddCarStateImpl implements _AddCarState {
       this.phoneNumber = "",
       this.errorNicknameValidation = false,
       this.errorPhoneNumberValidation = false,
-      this.beneficiaryAdded = false,
-      this.isAddingBeneficiary = false,
-      this.errorAddingBeneficiary = false});
+      this.carAdded = false,
+      this.isAddingCar = false,
+      this.errorAddingCar = false});
 
   factory _$AddCarStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddCarStateImplFromJson(json);
@@ -203,17 +203,17 @@ class _$AddCarStateImpl implements _AddCarState {
   final bool errorPhoneNumberValidation;
   @override
   @JsonKey()
-  final bool beneficiaryAdded;
+  final bool carAdded;
   @override
   @JsonKey()
-  final bool isAddingBeneficiary;
+  final bool isAddingCar;
   @override
   @JsonKey()
-  final bool errorAddingBeneficiary;
+  final bool errorAddingCar;
 
   @override
   String toString() {
-    return 'AddCarState(name: $name, phoneNumber: $phoneNumber, errorNicknameValidation: $errorNicknameValidation, errorPhoneNumberValidation: $errorPhoneNumberValidation, beneficiaryAdded: $beneficiaryAdded, isAddingBeneficiary: $isAddingBeneficiary, errorAddingBeneficiary: $errorAddingBeneficiary)';
+    return 'AddCarState(name: $name, phoneNumber: $phoneNumber, errorNicknameValidation: $errorNicknameValidation, errorPhoneNumberValidation: $errorPhoneNumberValidation, carAdded: $carAdded, isAddingCar: $isAddingCar, errorAddingCar: $errorAddingCar)';
   }
 
   @override
@@ -231,12 +231,12 @@ class _$AddCarStateImpl implements _AddCarState {
                     errorPhoneNumberValidation) ||
                 other.errorPhoneNumberValidation ==
                     errorPhoneNumberValidation) &&
-            (identical(other.beneficiaryAdded, beneficiaryAdded) ||
-                other.beneficiaryAdded == beneficiaryAdded) &&
-            (identical(other.isAddingBeneficiary, isAddingBeneficiary) ||
-                other.isAddingBeneficiary == isAddingBeneficiary) &&
-            (identical(other.errorAddingBeneficiary, errorAddingBeneficiary) ||
-                other.errorAddingBeneficiary == errorAddingBeneficiary));
+            (identical(other.carAdded, carAdded) ||
+                other.carAdded == carAdded) &&
+            (identical(other.isAddingCar, isAddingCar) ||
+                other.isAddingCar == isAddingCar) &&
+            (identical(other.errorAddingCar, errorAddingCar) ||
+                other.errorAddingCar == errorAddingCar));
   }
 
   @JsonKey(ignore: true)
@@ -247,9 +247,9 @@ class _$AddCarStateImpl implements _AddCarState {
       phoneNumber,
       errorNicknameValidation,
       errorPhoneNumberValidation,
-      beneficiaryAdded,
-      isAddingBeneficiary,
-      errorAddingBeneficiary);
+      carAdded,
+      isAddingCar,
+      errorAddingCar);
 
   @JsonKey(ignore: true)
   @override
@@ -271,9 +271,9 @@ abstract class _AddCarState implements AddCarState {
       final String phoneNumber,
       final bool errorNicknameValidation,
       final bool errorPhoneNumberValidation,
-      final bool beneficiaryAdded,
-      final bool isAddingBeneficiary,
-      final bool errorAddingBeneficiary}) = _$AddCarStateImpl;
+      final bool carAdded,
+      final bool isAddingCar,
+      final bool errorAddingCar}) = _$AddCarStateImpl;
 
   factory _AddCarState.fromJson(Map<String, dynamic> json) =
       _$AddCarStateImpl.fromJson;
@@ -287,11 +287,11 @@ abstract class _AddCarState implements AddCarState {
   @override
   bool get errorPhoneNumberValidation;
   @override
-  bool get beneficiaryAdded;
+  bool get carAdded;
   @override
-  bool get isAddingBeneficiary;
+  bool get isAddingCar;
   @override
-  bool get errorAddingBeneficiary;
+  bool get errorAddingCar;
   @override
   @JsonKey(ignore: true)
   _$$AddCarStateImplCopyWith<_$AddCarStateImpl> get copyWith =>

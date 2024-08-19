@@ -1,3 +1,4 @@
+import 'package:brokr/features/add_new_car/domain/usecases/add_car_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/util/validator/input_validators.dart';
@@ -7,12 +8,14 @@ part 'add_car_logic.g.dart';
 
 @riverpod
 class AddCarLogic extends _$AddCarLogic {
+  final AddCarUseCase addCarUseCase = getIt<AddCarUseCase>();
+
   @override
   AddCarState build() {
     return const AddCarState(phoneNumber: "", name: "");
   }
 
-  void changeName(String name) {
+  void changeTitle(String name) {
     state = state.copyWith(name: name, errorNicknameValidation: false);
   }
 
@@ -34,30 +37,28 @@ class AddCarLogic extends _$AddCarLogic {
 
   Future<void> addNewBeneficiary() async {
     state = state.copyWith(
-        isAddingBeneficiary: true,
-        errorAddingBeneficiary: false,
-        beneficiaryAdded: false);
+        isAddingCar: true,
+        errorAddingCar: false,
+        carAdded: false);
 
+    /// Here we can pass whatever what we need to pass for the parameters.
+    final result = await addCarUseCase(CarParams("", ""));
+    await result.fold((l) async {
+      state = state.copyWith(
+          isAddingCar: false,
+          errorAddingCar: true,
+          carAdded: false);
+    }, (r) async {
+      state = state.copyWith(
+          isAddingCar: false,
+          errorAddingCar: false,
+          carAdded: true);
+    });
 
+    /// This state only for demo so we must remove it....
     state = state.copyWith(
-        isAddingBeneficiary: false,
-        errorAddingBeneficiary: false,
-        beneficiaryAdded: true);
-
-    /// In this way we can call the api methods.
-    // final result = await addNewBeneficiaryUseCase(SubmitNewBeneficiaryParams(
-    //     phoneNumber: state.phoneNumber, nickname: state.name));
-    // await result.fold((l) async* {
-    //   state = state.copyWith(
-    //       failure: l,
-    //       isAddingBeneficiary: false,
-    //       errorAddingBeneficiary: true,
-    //       beneficiaryAdded: false);
-    // }, (r) async* {
-    //   state = state.copyWith(
-    //       isAddingBeneficiary: false,
-    //       errorAddingBeneficiary: false,
-    //       beneficiaryAdded: true);
-    // });
+        isAddingCar: true,
+        errorAddingCar: false,
+        carAdded: true);
   }
 }
