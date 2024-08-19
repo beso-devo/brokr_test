@@ -21,7 +21,7 @@ class GenerateScreen {
       case GeneralScreens.CONTINUE_AS_GUEST:
         return MaterialPageRoute(builder: (context) => ContinueAsGuestPage());
       case GeneralScreens.MAIN_PAGE:
-        return MaterialPageRoute(builder: (context) => MainPage());
+        return MaterialPageRoute(builder: (context) => const MainNew());
       case GeneralScreens.ADD_CAR:
         return MaterialPageRoute(builder: (context) => AddCarPage());
 

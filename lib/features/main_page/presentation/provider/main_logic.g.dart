@@ -6,7 +6,7 @@ part of 'main_logic.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mainLogicHash() => r'1339d35c6f4b0d9114ad5768869027bb5e626d94';
+String _$mainLogicHash() => r'22c9ff68e74e59697cf5bc63b578633692634179';
 
 /// See also [MainLogic].
 @ProviderFor(MainLogic)

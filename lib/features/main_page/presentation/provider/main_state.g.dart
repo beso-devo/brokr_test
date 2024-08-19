@@ -8,18 +8,19 @@ part of 'main_state.dart';
 
 _$MainStateImpl _$$MainStateImplFromJson(Map<String, dynamic> json) =>
     _$MainStateImpl(
-      isLoadingCars: json['isLoadingCars'] as bool? ?? false,
-      errorLoadingCars: json['errorLoadingCars'] as bool? ?? false,
-      carsLoaded: json['carsLoaded'] as bool? ?? false,
-      email: json['email'] as String? ?? "",
-      password: json['password'] as String? ?? "",
+      isLoadingBoats: json['isLoadingBoats'] as bool? ?? false,
+      errorLoadingBoats: json['errorLoadingBoats'] as bool? ?? false,
+      boatsLoaded: json['boatsLoaded'] as bool? ?? false,
+      boats: (json['boats'] as List<dynamic>?)
+              ?.map((e) => BoatEntity.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$MainStateImplToJson(_$MainStateImpl instance) =>
     <String, dynamic>{
-      'isLoadingCars': instance.isLoadingCars,
-      'errorLoadingCars': instance.errorLoadingCars,
-      'carsLoaded': instance.carsLoaded,
-      'email': instance.email,
-      'password': instance.password,
+      'isLoadingBoats': instance.isLoadingBoats,
+      'errorLoadingBoats': instance.errorLoadingBoats,
+      'boatsLoaded': instance.boatsLoaded,
+      'boats': instance.boats,
     };

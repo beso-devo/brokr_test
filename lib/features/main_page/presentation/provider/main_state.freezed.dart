@@ -20,11 +20,10 @@ MainState _$MainStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MainState {
-  bool get isLoadingCars => throw _privateConstructorUsedError;
-  bool get errorLoadingCars => throw _privateConstructorUsedError;
-  bool get carsLoaded => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  bool get isLoadingBoats => throw _privateConstructorUsedError;
+  bool get errorLoadingBoats => throw _privateConstructorUsedError;
+  bool get boatsLoaded => throw _privateConstructorUsedError;
+  List<BoatEntity> get boats => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +37,10 @@ abstract class $MainStateCopyWith<$Res> {
       _$MainStateCopyWithImpl<$Res, MainState>;
   @useResult
   $Res call(
-      {bool isLoadingCars,
-      bool errorLoadingCars,
-      bool carsLoaded,
-      String email,
-      String password});
+      {bool isLoadingBoats,
+      bool errorLoadingBoats,
+      bool boatsLoaded,
+      List<BoatEntity> boats});
 }
 
 /// @nodoc
@@ -58,33 +56,28 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoadingCars = null,
-    Object? errorLoadingCars = null,
-    Object? carsLoaded = null,
-    Object? email = null,
-    Object? password = null,
+    Object? isLoadingBoats = null,
+    Object? errorLoadingBoats = null,
+    Object? boatsLoaded = null,
+    Object? boats = null,
   }) {
     return _then(_value.copyWith(
-      isLoadingCars: null == isLoadingCars
-          ? _value.isLoadingCars
-          : isLoadingCars // ignore: cast_nullable_to_non_nullable
+      isLoadingBoats: null == isLoadingBoats
+          ? _value.isLoadingBoats
+          : isLoadingBoats // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorLoadingCars: null == errorLoadingCars
-          ? _value.errorLoadingCars
-          : errorLoadingCars // ignore: cast_nullable_to_non_nullable
+      errorLoadingBoats: null == errorLoadingBoats
+          ? _value.errorLoadingBoats
+          : errorLoadingBoats // ignore: cast_nullable_to_non_nullable
               as bool,
-      carsLoaded: null == carsLoaded
-          ? _value.carsLoaded
-          : carsLoaded // ignore: cast_nullable_to_non_nullable
+      boatsLoaded: null == boatsLoaded
+          ? _value.boatsLoaded
+          : boatsLoaded // ignore: cast_nullable_to_non_nullable
               as bool,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
+      boats: null == boats
+          ? _value.boats
+          : boats // ignore: cast_nullable_to_non_nullable
+              as List<BoatEntity>,
     ) as $Val);
   }
 }
@@ -98,11 +91,10 @@ abstract class _$$MainStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoadingCars,
-      bool errorLoadingCars,
-      bool carsLoaded,
-      String email,
-      String password});
+      {bool isLoadingBoats,
+      bool errorLoadingBoats,
+      bool boatsLoaded,
+      List<BoatEntity> boats});
 }
 
 /// @nodoc
@@ -116,33 +108,28 @@ class __$$MainStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoadingCars = null,
-    Object? errorLoadingCars = null,
-    Object? carsLoaded = null,
-    Object? email = null,
-    Object? password = null,
+    Object? isLoadingBoats = null,
+    Object? errorLoadingBoats = null,
+    Object? boatsLoaded = null,
+    Object? boats = null,
   }) {
     return _then(_$MainStateImpl(
-      isLoadingCars: null == isLoadingCars
-          ? _value.isLoadingCars
-          : isLoadingCars // ignore: cast_nullable_to_non_nullable
+      isLoadingBoats: null == isLoadingBoats
+          ? _value.isLoadingBoats
+          : isLoadingBoats // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorLoadingCars: null == errorLoadingCars
-          ? _value.errorLoadingCars
-          : errorLoadingCars // ignore: cast_nullable_to_non_nullable
+      errorLoadingBoats: null == errorLoadingBoats
+          ? _value.errorLoadingBoats
+          : errorLoadingBoats // ignore: cast_nullable_to_non_nullable
               as bool,
-      carsLoaded: null == carsLoaded
-          ? _value.carsLoaded
-          : carsLoaded // ignore: cast_nullable_to_non_nullable
+      boatsLoaded: null == boatsLoaded
+          ? _value.boatsLoaded
+          : boatsLoaded // ignore: cast_nullable_to_non_nullable
               as bool,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
+      boats: null == boats
+          ? _value._boats
+          : boats // ignore: cast_nullable_to_non_nullable
+              as List<BoatEntity>,
     ));
   }
 }
@@ -151,34 +138,36 @@ class __$$MainStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MainStateImpl implements _MainState {
   const _$MainStateImpl(
-      {this.isLoadingCars = false,
-      this.errorLoadingCars = false,
-      this.carsLoaded = false,
-      this.email = "",
-      this.password = ""});
+      {this.isLoadingBoats = false,
+      this.errorLoadingBoats = false,
+      this.boatsLoaded = false,
+      final List<BoatEntity> boats = const []})
+      : _boats = boats;
 
   factory _$MainStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$MainStateImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool isLoadingCars;
+  final bool isLoadingBoats;
   @override
   @JsonKey()
-  final bool errorLoadingCars;
+  final bool errorLoadingBoats;
   @override
   @JsonKey()
-  final bool carsLoaded;
+  final bool boatsLoaded;
+  final List<BoatEntity> _boats;
   @override
   @JsonKey()
-  final String email;
-  @override
-  @JsonKey()
-  final String password;
+  List<BoatEntity> get boats {
+    if (_boats is EqualUnmodifiableListView) return _boats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_boats);
+  }
 
   @override
   String toString() {
-    return 'MainState(isLoadingCars: $isLoadingCars, errorLoadingCars: $errorLoadingCars, carsLoaded: $carsLoaded, email: $email, password: $password)';
+    return 'MainState(isLoadingBoats: $isLoadingBoats, errorLoadingBoats: $errorLoadingBoats, boatsLoaded: $boatsLoaded, boats: $boats)';
   }
 
   @override
@@ -186,21 +175,23 @@ class _$MainStateImpl implements _MainState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainStateImpl &&
-            (identical(other.isLoadingCars, isLoadingCars) ||
-                other.isLoadingCars == isLoadingCars) &&
-            (identical(other.errorLoadingCars, errorLoadingCars) ||
-                other.errorLoadingCars == errorLoadingCars) &&
-            (identical(other.carsLoaded, carsLoaded) ||
-                other.carsLoaded == carsLoaded) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.isLoadingBoats, isLoadingBoats) ||
+                other.isLoadingBoats == isLoadingBoats) &&
+            (identical(other.errorLoadingBoats, errorLoadingBoats) ||
+                other.errorLoadingBoats == errorLoadingBoats) &&
+            (identical(other.boatsLoaded, boatsLoaded) ||
+                other.boatsLoaded == boatsLoaded) &&
+            const DeepCollectionEquality().equals(other._boats, _boats));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, isLoadingCars, errorLoadingCars,
-      carsLoaded, email, password);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoadingBoats,
+      errorLoadingBoats,
+      boatsLoaded,
+      const DeepCollectionEquality().hash(_boats));
 
   @JsonKey(ignore: true)
   @override
@@ -218,25 +209,22 @@ class _$MainStateImpl implements _MainState {
 
 abstract class _MainState implements MainState {
   const factory _MainState(
-      {final bool isLoadingCars,
-      final bool errorLoadingCars,
-      final bool carsLoaded,
-      final String email,
-      final String password}) = _$MainStateImpl;
+      {final bool isLoadingBoats,
+      final bool errorLoadingBoats,
+      final bool boatsLoaded,
+      final List<BoatEntity> boats}) = _$MainStateImpl;
 
   factory _MainState.fromJson(Map<String, dynamic> json) =
       _$MainStateImpl.fromJson;
 
   @override
-  bool get isLoadingCars;
+  bool get isLoadingBoats;
   @override
-  bool get errorLoadingCars;
+  bool get errorLoadingBoats;
   @override
-  bool get carsLoaded;
+  bool get boatsLoaded;
   @override
-  String get email;
-  @override
-  String get password;
+  List<BoatEntity> get boats;
   @override
   @JsonKey(ignore: true)
   _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>

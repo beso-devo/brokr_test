@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import '../../../../../core/network/models/base_response_model.dart';
 import '../../../../core/data/models/base_remote_datasource.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../core/di/injection_container.dart';
 import '../services/car_service.dart';
 
 abstract class CarRemoteDataSource extends BaseRemoteDataSource {
@@ -16,23 +17,24 @@ abstract class CarRemoteDataSource extends BaseRemoteDataSource {
 @LazySingleton(as: CarRemoteDataSource)
 class CarRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
     implements CarRemoteDataSource {
-  final CarService carService;
+  CarService carService = CarService(getIt<Dio>());
 
-  CarRemoteDataSourceImpl({required this.carService, required Dio dio})
-      : super(dio: dio);
+  CarRemoteDataSourceImpl({required Dio dio}) : super(dio: dio);
 
   @override
   Future<BaseResponseModel<CarEntity>> create(CarParams params) async {
     final carModel = await carService.create(params.toMap());
-    CarEntity car = CarEntity(id: carModel.id, name: carModel.name, brand: carModel.brand);
+    CarEntity car =
+        CarEntity(id: carModel.id, name: carModel.name, brand: carModel.brand);
     return BaseResponseModel(data: car);
   }
 
   @override
   Future<BaseListResponseModel<CarEntity>> getAll() async {
     final carModels = await carService.getCars();
-    List<CarEntity> cars = carModels.map((carModel) =>
-        CarEntity(id: carModel.id, name: carModel.name, brand: carModel.brand))
+    List<CarEntity> cars = carModels
+        .map((carModel) => CarEntity(
+            id: carModel.id, name: carModel.name, brand: carModel.brand))
         .toList();
 
     /// Why `BaseListResponseModel` because maybe we need to implement generic class for all of our models in one place and return multiple

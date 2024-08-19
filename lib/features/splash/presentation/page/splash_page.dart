@@ -55,7 +55,7 @@ class _SplashPageState extends State<SplashPage> {
                     height: 25.0,
                   ),
                   Text(
-                    "Edenred C3P",
+                    "Brokr App",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,

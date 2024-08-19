@@ -1,3 +1,4 @@
+import 'package:brokr/core/di/injection_container.dart';
 import 'package:brokr/core/network/models/base_response_model.dart';
 import 'package:brokr/core/util/services/get_multi_part_file.dart';
 import 'package:brokr/features/main_page/data/services/main_api_service.dart';
@@ -23,10 +24,9 @@ abstract class MainPageRemoteDataSource extends BaseRemoteDataSource {
 @LazySingleton(as: MainPageRemoteDataSource)
 class MainPageRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
     implements MainPageRemoteDataSource {
-  final MainApiService mainApiService;
+  MainApiService mainApiService = MainApiService(getIt<Dio>());
 
-  MainPageRemoteDataSourceImpl(
-      {required this.mainApiService, required super.dio});
+  MainPageRemoteDataSourceImpl({required Dio dio}) : super(dio: dio);
 
   @override
   Future<BaseListResponseModel<BoatEntity>> getBoats(

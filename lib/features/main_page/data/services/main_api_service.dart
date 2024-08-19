@@ -1,4 +1,6 @@
 import 'package:brokr/features/main_page/data/models/boat_model.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 

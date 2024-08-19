@@ -19,7 +19,6 @@ import '../../features/add_new_car/data/datasource/car_remote_datasource.dart'
     as _i243;
 import '../../features/add_new_car/data/repository%20/car_repository_impl.dart'
     as _i439;
-import '../../features/add_new_car/data/services/car_service.dart' as _i117;
 import '../../features/add_new_car/domain/repository/car_repository.dart'
     as _i100;
 import '../../features/add_new_car/domain/usecases/add_car_usecase.dart'
@@ -30,7 +29,6 @@ import '../../features/main_page/data/datasource/main_page_remote_datasource.dar
     as _i27;
 import '../../features/main_page/data/repository/dealer_main_repository_impl.dart'
     as _i987;
-import '../../features/main_page/data/services/main_api_service.dart' as _i915;
 import '../../features/main_page/domain/repository/dealer_main_repository.dart'
     as _i10;
 import '../../features/main_page/domain/usecases/get_boats_usecase.dart'
@@ -107,6 +105,8 @@ Future<_i174.GetIt> $initGetIt(
           sharedPreferences: gh<_i460.SharedPreferences>()));
   gh.lazySingleton<_i176.SignUpRemoteDataSource>(
       () => _i176.SignUpRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.lazySingleton<_i243.CarRemoteDataSource>(
+      () => _i243.CarRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.lazySingleton<_i419.SignInLocalDataSource>(() =>
       _i419.SignInLocalDataSourceImpl(
           sharedPreferences: gh<_i460.SharedPreferences>()));
@@ -118,26 +118,18 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i874.SignUpLocalDataSource>(() =>
       _i874.SignUpLocalDataSourceImpl(
           sharedPreferences: gh<_i460.SharedPreferences>()));
-  gh.lazySingleton<_i27.MainPageRemoteDataSource>(
-      () => _i27.MainPageRemoteDataSourceImpl(
-            mainApiService: gh<_i915.MainApiService>(),
-            dio: gh<_i361.Dio>(),
-          ));
   gh.lazySingleton<_i94.BaseRepository>(() => _i94.BaseRepositoryImpl(
         baseLocalDataSource: gh<_i660.BaseLocalDataSource>(),
         networkInfo: gh<_i932.NetworkInfo>(),
         baseRemoteDataSource: gh<_i262.BaseRemoteDataSource>(),
       ));
-  gh.lazySingleton<_i243.CarRemoteDataSource>(
-      () => _i243.CarRemoteDataSourceImpl(
-            carService: gh<_i117.CarService>(),
-            dio: gh<_i361.Dio>(),
-          ));
   gh.lazySingleton<_i578.SignUpRepository>(() => _i564.SignUpRepositoryImpl(
         signUpRemoteDataSource: gh<_i176.SignUpRemoteDataSource>(),
         signUpLocalDataSource: gh<_i874.SignUpLocalDataSource>(),
         networkInfo: gh<_i932.NetworkInfo>(),
       ));
+  gh.lazySingleton<_i27.MainPageRemoteDataSource>(
+      () => _i27.MainPageRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.lazySingleton<_i692.ContinueAsGuestUseCase>(
       () => _i692.ContinueAsGuestUseCase(gh<_i578.SignUpRepository>()));
   gh.lazySingleton<_i18.SignUpUseCase>(

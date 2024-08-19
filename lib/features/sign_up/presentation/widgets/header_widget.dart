@@ -84,7 +84,7 @@ class HeaderSignUpWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Welcome to Edenred C3P",
+                "Welcome to Brokr",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
